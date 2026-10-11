@@ -1,5 +1,7 @@
 """Constants for the Allegro integration."""
 
+import os
+
 NAME = "Allegro buyer"
 DOMAIN = "allegro"
 VERSION = "0.2.0"
@@ -42,8 +44,10 @@ CONF_METHOD = "method"
 METHOD_COMPANION = "companion"
 METHOD_COOKIE = "cookie"
 
-ALLEGRO_API_URL = "https://api.allegro.pl"
-ALLEGRO_EDGE_URL = "https://edge.allegro.pl"
+# The environment variables exist only so a local staging Home Assistant can talk to
+# a fake server. Production leaves them unset.
+ALLEGRO_API_URL = os.environ.get("ALLEGRO_API_URL", "https://api.allegro.pl")
+ALLEGRO_EDGE_URL = os.environ.get("ALLEGRO_EDGE_URL", "https://edge.allegro.pl")
 ALLEGRO_START_URL = "https://allegro.pl/logowanie?origin_url=%2Fmoje-allegro%2Fzakupy%2Fkupione%3Fdd_referrer%3D"
 ALLEGRO_ORDERS_URL = "https://allegro.pl/moje-allegro/zakupy/kupione"
 COMPANION_WAIT = {
